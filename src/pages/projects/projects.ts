@@ -1,59 +1,35 @@
 export interface Project {
   name: string;
-  demoLink: string;
+  repoLink: string;
+  demoLink?: string;
   tags?: string[];
   description?: string;
   postLink?: string;
   demoLinkRel?: string;
-  [key: string]: any;
 }
 
 export const projects: Project[] = [
   {
-    name: "Devaradise.com",
-    description: "A blog that sharing web development resources and tutorials",
-    demoLink: "https://devaradise.com",
-    tags: ["Blog"],
+    name: "FootPool",
+    description: "First decentralized betting application inspired by the popular Spanish 'Quiniela'",
+    repoLink: "https://github.com/footpool-xyz/footpool-xyz",
+    demoLink: "https://footpool.xyz",
+    tags: ["Solidity", "Web3"],
   },
-  {
-    name: "Sellercraft App",
-    description: "An Ecommerce omnichannel platform in Southeast Asia",
-    demoLink: "https://sellercraft.co",
-    demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["ECommerce", "Saas"],
-  },
-  {
-    name: "Gaji.id App",
-    description: "Payroll and HR Management Information System",
-    demoLink: "https://sellercraft.co",
-    demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["HRIS", "Saas"],
-  },
-  {
-    name: "Paradise UI",
-    demoLink: "https://paradise-ui.com",
-    postLink:
-      "https://devaradise.com/how-i-build-paradise-ui-react-component-library/",
-    tags: ["React", "UI Library"],
-  },
-  {
-    name: "React Lab",
-    demoLink: "https://devaradise.com/lab/react/",
-    tags: ["React"],
-  },
-  {
-    name: "Pokemon Catcher",
-    demoLink: "https://pokemon-catcher-18636.web.app/",
-    tags: ["Hobby"],
-  },
-  {
-    name: "Movie Nominations",
-    demoLink: "https://movie-nominations-c21c3.web.app/",
-    tags: ["Hobby"],
-  },
-  {
-    name: "Organization tree",
-    demoLink: "https://organization-tree-2a446.web.app/",
-    tags: ["Hobby"],
-  },
+  // {
+  //   name: "Sellercraft App",
+  //   description: "An Ecommerce omnichannel platform in Southeast Asia",
+  //   repoLink: "",
+  //   demoLink: "https://sellercraft.co",
+  //   demoLinkRel: "nofollow noopener noreferrer",
+  //   tags: ["ECommerce", "Saas"],
+  // },
+  // {
+  //   name: "Gaji.id App",
+  //   description: "Payroll and HR Management Information System",
+  //   repoLink: "",
+  //   demoLink: "https://sellercraft.co",
+  //   demoLinkRel: "nofollow noopener noreferrer",
+  //   tags: ["HRIS", "Saas"],
+  // },
 ];

@@ -1,9 +1,5 @@
 ---
-import { Image } from "astro:assets";
 import type { Project } from "../pages/projects/projects";
-import { kFormatter } from "../utils";
-import GithubWhite from "@src/assets/img/github-mark-white.svg";
-import GithubBlack from "@src/assets/img/github-mark.svg";
 
 const { projects } = Astro.props;
 ---
@@ -25,35 +21,6 @@ const { projects } = Astro.props;
               </span>
             ))}
           </div>
-
-          {project.stargazers_count !== undefined && (
-            <div class="shrink-0">
-              <a
-                href={project.html_url}
-                target="_blank"
-                class="border border-zinc-300 dark:border-zinc-700 rounded-2xl
-                    text-xs text-zinc-700 dark:text-zinc-300 no-underline px-2 py-0.5
-                    transition-all duration-700
-                  hover:border-zinc-700 dark:hover:border-zinc-300
-                    flex items-center gap-1
-              "
-              >
-                <Image
-                  src={GithubBlack}
-                  height={12}
-                  class="dark:hidden"
-                  alt="Github stars"
-                />
-                <Image
-                  src={GithubWhite}
-                  height={12}
-                  class="hidden dark:block"
-                  alt="Github stars"
-                />
-                {kFormatter(project.stargazers_count)} stars
-              </a>
-            </div>
-          )}
         </div>
         <h3 class="font-semibold my-2">
           <a
@@ -75,6 +42,15 @@ const { projects } = Astro.props;
               href={project.postLink}
             >
               Article
+            </a>
+          )}
+          {project.repoLink && (
+            <a
+              class="underline flex items-center gap-2"
+              target="_blank"
+              href={project.repoLink}
+            >
+              See code
             </a>
           )}
           {project.demoLink && ( // This line adds the conditional check for the Demo link
