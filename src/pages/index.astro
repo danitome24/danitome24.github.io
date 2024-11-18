@@ -16,7 +16,7 @@ const top6Projects = projects.slice(0, 6);
 const posts = (await getCollection("blog"))
   .sort(
     (a: BlogPost, b: BlogPost) =>
-      b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+      b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
   )
   .slice(0, 5);
 ---
@@ -32,24 +32,23 @@ const posts = (await getCollection("blog"))
         <Prose>
           <div class="text-lg">
             <span>
-              I am a software developer specializing in <span class="font-bold"
-                >back-end technologies</span
-              >. Passionate about coding and driven by curiosity, I am
-              constantly seeking to refine my skills, learn new technologies,
-              and grow as a developer every day. My focus is on designing robust
-              architectures, perfecting my existing expertise, writing clean,
-              maintainable code, and ensuring quality through thorough testing.
+              I am a software developer specializing in back-end technologies.
+              <span class="font-bold">Passionate</span> about coding and driven by
+              <span class="font-bold">curiosity</span>, I am constantly seeking
+              to refine my skills, learn new technologies, and grow as a
+              developer every day.
             </span>
             <!-- <p>
 							I have also worked as a freelancer developing and maintaining web pages and applications. If you are interested, don’t
 							hesitate to contact me ✉️.
 						</p> -->
             <p>
-              Currently, I am expanding my expertise by learning <span
-                class="font-bold">blockchain development</span
-              > with Solidity and Web3. Exploring this cutting-edge technology allows
-              me to grow as a developer and opens doors to building decentralized
-              applications and contributing to the future of the web.
+              Currently, I am expanding my expertise by learning blockchain
+              development with <span class="font-bold">Solidity</span> and <span
+                class="font-bold">Web3</span
+              >. Exploring this cutting-edge technology allows me to grow as a
+              developer and opens doors to building decentralized applications
+              and contributing to the future of the web.
             </p>
           </div>
         </Prose>
