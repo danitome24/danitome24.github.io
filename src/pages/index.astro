@@ -18,23 +18,26 @@ const top6Projects = projects.slice(0, 6);
   <div class="container">
     <div class="w-full md:flex md:items-center gap-16 mb-10">
       <div class="text-pretty leading-9">
-        <h1 class="text-4xl font-bold mb-4">Hi There 👋, Daniel Here!</h1>
+        <h1 class="text-4xl font-bold mb-4">
+          <span class="text-3xl">Hi there 👋,</span> Daniel <span
+            class="text-3xl">here!</span
+          >
+        </h1>
         <Prose>
           <div class="text-lg">
-            <span>
-              I am a software developer specialized in back-end technologies.
-              <span class="font-bold">Passionate</span> about coding and driven by
-              <span class="font-bold">curiosity</span>, I am constantly seeking
-              to refine my skills, learn new technologies, and grow as a
-              developer every day.
-            </span>
-            <p>
-              Currently, I am expanding my expertise by learning blockchain
-              development with <span class="font-bold">Solidity</span> and <span
-                class="font-bold">Web3</span
-              >. Exploring this cutting-edge technology allows me to grow as a
-              developer and opens doors to building decentralized applications
-              and contributing to the future of the web.
+            <p class="text-xl font-semibold text-gray-800 dark:text-white">
+              I am a software developer with
+              <span class="text-yellow-500 font-bold">
+                7 years of experience
+              </span>
+              <span class="text-gray-500">💻</span>, skilled in back-end
+              technologies. Currently, I am focused on
+              <span class="text-teal-500 font-semibold">
+                blockchain development
+              </span>
+              , creating decentralized applications (dApps) with Web3 and
+              <span class="text-indigo-500">Solidity</span>, and exploring the
+              future of the web.
             </p>
           </div>
         </Prose>
@@ -62,7 +65,7 @@ const top6Projects = projects.slice(0, 6);
               ></path><path d="M3 6l9 6l9 -6"></path><path d="M15 18h6"
               ></path><path d="M18 15l3 3l-3 3"></path></svg
             >
-            Contáctame
+            Contact me
           </a>
           <a
             href="https://linkedin.com/in/danieltomefer"
@@ -112,19 +115,46 @@ const top6Projects = projects.slice(0, 6);
         </div>
         <ProjectList projects={top6Projects} />
       </section>
-      <!-- <section class="py-6">
-        <div
-          class="flex justify-between gap-2 border-b mb-1 dark:border-b-zinc-700"
-        >
-          <h2 class="text-lg font-bold mb-3">Recent Posts</h2>
-          <a
-            href="/posts/"
-            class="inline-block py-2 underline dark:prose-invert"
-            >All posts &raquo;</a
-          >
-        </div>
-        <PostList />
-      </section> -->
+      <section class="py-6" id="about-me">
+        <article>
+          <div class="w-full md:flex md:items-center gap-16 mt-10">
+            <div class="text-pretty leading-9">
+              <h2 class="text-4xl font-bold mb-4">About me!</h2>
+              <Prose>
+                <div class="text-lg">
+                  <p>
+                    With over 7 years of experience as a <span class="font-bold">software developer</span>, I
+                    have honed my skills in back-end technologies across
+                    multiple industries. I have worked extensively with 
+                    <span class="font-bold">PHP, JavaScript, and MySQL</span>, 
+                    contributing to both small projects and large-scale applications.
+                  </p>
+                  <p>
+                    My experience includes maintaining and enhancing the virtual
+                    campus at Universitat Rovira i Virgili, developing new
+                    features and plugins for the Moodle platform, and
+                    implementing Docker for better deployment and orchestration.
+                  </p>
+                  <p>
+                    Previously, I also built a product API from scratch using
+                    Symfony, where I applied DDD (Domain-Driven Design)
+                    principles and integrated Doctrine ORM for database
+                    management. Throughout my career, I have focused on code
+                    refactoring, applying SOLID principles, and automating
+                    processes through CI/CD pipelines.
+                  </p>
+                </div>
+              </Prose>
+            </div>
+            <Image
+              src={Ava}
+              alt="Muhammad Syakirurohman"
+              width={300}
+              class="rounded-3xl rotate-3 mx-4 md:mx-0"
+            />
+          </div>
+        </article>
+      </section>
     </main>
   </div>
 </BaseLayout>

@@ -6,22 +6,16 @@ import GithubWhite from "@assets/img/github-mark-white.svg";
 import GithubBlack from "@assets/img/github-mark.svg";
 
 const menu = [
-  // {
-  //   link: "/about/",
-  //   label: "About",
-  // },
   {
     link: "/#projects",
-    label: "Projects",
+    label: "projects",
+    title: "Projects",
   },
-  // {
-  //   link: "/posts/",
-  //   label: "Posts",
-  // },
-  // {
-  //   link: "/tags/",
-  //   label: "Tags",
-  // },
+  {
+    link: "/#about-me",
+    title: "About",
+    label: "About",
+  },
 ];
 ---
 
@@ -136,7 +130,7 @@ const menu = [
           menu.map((item) => (
             <div class="px-2.5 text-sm">
               <HeaderLink class="py-3 flex items-center" href={item.link}>
-                {item.label}
+                {item.title}
               </HeaderLink>
             </div>
           ))
