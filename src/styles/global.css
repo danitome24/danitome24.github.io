@@ -1,3 +1,4 @@
+@import "./fonts.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,4 +7,8 @@
   code {
     font-size: 0.875rem;
   }
+}
+
+body {
+  font-family: "Onest", sans-serif;
 }
