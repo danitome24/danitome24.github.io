@@ -4,10 +4,10 @@ import type { Project } from "@pages/projects/projects";
 const { projects } = Astro.props;
 ---
 
-<div class="grid grid-cols-12 gap-5">
+<div class="grid grid-cols-2 gap-5">
   {
     projects.map((project: Project) => (
-      <div class="col-span-12 sm:col-span-6 lg:col-span-4 border dark:border-zinc-700 rounded-xl shadow-sm p-5">
+      <div class="border dark:border-zinc-700 rounded-xl shadow-sm p-5">
         <div class="flex justify-between items-center">
           <div class="flex gap-2">
             {(project.tags || [])?.map((tag: string) => (
