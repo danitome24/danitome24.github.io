@@ -2,11 +2,10 @@
 import { Image } from "astro:assets";
 import { SITE_TITLE, SITE_TAGLINE, SITE_DESCRIPTION } from "../consts";
 import BaseLayout from "@layouts/BaseLayout.astro";
-import Ava from "@assets/img/ava.jpg";
+import Me from "@assets/img/me.jpeg";
 import Prose from "@components/Prose.astro";
 import { projects } from "@pages/projects/projects";
 import ProjectList from "@components/ProjectList.astro";
-import PostList from "@components/PostList.astro";
 
 const top6Projects = projects.slice(0, 6);
 ---
@@ -96,8 +95,8 @@ const top6Projects = projects.slice(0, 6);
         </div>
       </div>
       <Image
-        src={Ava}
-        alt="Muhammad Syakirurohman"
+        src={Me}
+        alt="Daniel Tomé Fernández"
         width={300}
         loading="eager"
         class="rounded-3xl rotate-3 mx-4 md:mx-0"
@@ -123,11 +122,13 @@ const top6Projects = projects.slice(0, 6);
               <Prose>
                 <div class="text-lg">
                   <p>
-                    With over 7 years of experience as a <span class="font-bold">software developer</span>, I
-                    have honed my skills in back-end technologies across
-                    multiple industries. I have worked extensively with 
-                    <span class="font-bold">PHP, JavaScript, and MySQL</span>, 
-                    contributing to both small projects and large-scale applications.
+                    With over 7 years of experience as a <span class="font-bold"
+                      >software developer</span
+                    >, I have honed my skills in back-end technologies across
+                    multiple industries. I have worked extensively with
+                    <span class="font-bold">PHP, JavaScript, and MySQL</span>,
+                    contributing to both small projects and large-scale
+                    applications.
                   </p>
                   <p>
                     My experience includes maintaining and enhancing the virtual
@@ -147,8 +148,8 @@ const top6Projects = projects.slice(0, 6);
               </Prose>
             </div>
             <Image
-              src={Ava}
-              alt="Muhammad Syakirurohman"
+              src={Me}
+              alt="Daniel Tomé Fernández"
               width={300}
               class="rounded-3xl rotate-3 mx-4 md:mx-0"
             />
