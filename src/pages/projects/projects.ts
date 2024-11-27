@@ -6,9 +6,18 @@ export interface Project {
   description?: string;
   postLink?: string;
   demoLinkRel?: string;
+  wip?: boolean;
 }
 
 export const projects: Project[] = [
+  {
+    name: "KiddoPerks",
+    description: "Family-focused DApp that rewards kids with a token for completing household and school tasks.",
+    repoLink: "https://github.com/danitome24/bc-kiddo-perks",
+    demoLinkRel: "nofollow noopener noreferrer",
+    tags: ["Solidity", "Web3"],
+    wip: true,
+  },
   {
     name: "FootPool",
     description: "First decentralized betting application inspired by the popular Spanish 'Quiniela'",
