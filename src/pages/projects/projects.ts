@@ -15,6 +15,7 @@ export const projects: Project[] = [
     description: "Decentralized reputation system for wallets by calculating a trust score based on user activity within the Lens Network. ",
     repoLink: "https://github.com/danitome24/bc-lens-holiday-hackathon",
     demoLinkRel: "nofollow noopener noreferrer",
+    demoLink: "https://bc-lens-holiday-hackathon.vercel.app",
     tags: ["Solidity", "Web3", "Hackathon"]
   },
   {
