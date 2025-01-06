@@ -10,6 +10,13 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+    {
+    name: "LensSocialScore",
+    description: "Decentralized reputation system for wallets by calculating a trust score based on user activity within the Lens Network. ",
+    repoLink: "https://github.com/danitome24/bc-lens-holiday-hackathon",
+    demoLinkRel: "nofollow noopener noreferrer",
+    tags: ["Solidity", "Web3", "Hackathon"]
+  },
   {
     name: "KiddoPerks",
     description: "Family-focused DApp that rewards kids with a token for completing household and school tasks.",
