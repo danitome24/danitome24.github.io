@@ -11,11 +11,11 @@ export interface Project {
 
 export const projects: Project[] = [
     {
-    name: "LensSocialScore",
-    description: "Decentralized reputation system for wallets by calculating a trust score based on user activity within the Lens Network. ",
-    repoLink: "https://github.com/danitome24/bc-lens-holiday-hackathon",
+    name: "LensReputation",
+    description: "On-chain reputation system in Lens Network. +100k mints testnet, +10k mints mainnet",
+    repoLink: "https://github.com/lens-reputation",
     demoLinkRel: "nofollow noopener noreferrer",
-    demoLink: "https://bc-lens-holiday-hackathon.vercel.app",
+    demoLink: "https://lensreputation.xyz",
     tags: ["Solidity", "Web3", "Hackathon"]
   },
   {
@@ -24,7 +24,7 @@ export const projects: Project[] = [
     repoLink: "https://github.com/danitome24/bc-kiddo-perks",
     demoLinkRel: "nofollow noopener noreferrer",
     tags: ["Solidity", "Web3"],
-    wip: true,
+    //wip: true,
   },
   {
     name: "FootPool",
