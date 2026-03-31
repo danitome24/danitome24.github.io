@@ -7,7 +7,7 @@ export interface Project {
   postLink?: string;
   demoLinkRel?: string;
   wip?: boolean;
-  category?: "featured" | "learning" | "open-source"; // New property
+  category?: "featured" | "learning" | "open-source";
 }
 
 export const projects: Project[] = [
