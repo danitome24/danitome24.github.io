@@ -7,7 +7,7 @@ import Prose from "@components/Prose.astro";
 import { projects } from "@pages/projects/projects";
 import ProjectList from "@components/ProjectList.astro";
 
-const top6Projects = projects.slice(0, 6);
+const featuredProjects = projects.filter(p => p.category === "featured").slice(0, 6);
 ---
 
 <BaseLayout
@@ -32,11 +32,12 @@ const top6Projects = projects.slice(0, 6);
               <span class="text-gray-500">💻</span>, skilled in back-end
               technologies. Currently, I am focused on
               <span class="text-teal-500 font-semibold">
-                blockchain development
+                Web3 development
               </span>
-              , creating decentralized applications (dApps) with Web3 and
-              <span class="text-indigo-500">Solidity</span>, and exploring the
-              future of the web.
+              , building decentralized applications (dApps) with
+              <span class="text-indigo-500">Solidity</span> and
+              <span class="text-indigo-500">TypeScript</span>, and exploring the
+              future of the web through blockchain technology and DeFi protocols.
             </p>
           </div>
         </Prose>
@@ -92,6 +93,30 @@ const top6Projects = projects.slice(0, 6);
             >
             LinkedIn
           </a>
+          <a
+            href="https://github.com/danitome24"
+            target="_blank"
+            rel="noopener noreferrer"
+            role="link"
+            class="inline-flex items-center justify-center gap-2 px-4 py-1 text-gray-800 transition bg-gray-100 border border-gray-300 rounded-full dark:bg-gray-800 dark:border-gray-600 dark:text-white focus-visible:ring-yellow-500/80 text-md hover:bg-gray-900 hover:border-gray-700 hover:text-white dark:hover:bg-gray-100 dark:hover:border-gray-300 dark:hover:text-black group max-w-fit focus:outline-none focus-visible:outline-none focus-visible:ring focus-visible:ring-white focus-visible:ring-offset-2 active:bg-black"
+          >
+            <svg
+              class="size-4"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              fill="none"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              ><path stroke="none" d="M0 0h24v24H0z" fill="none"></path><path
+                d="M9 19c-4.3 1.697 -4.3 -6.5 0 -6.5c1.587 -2.541 1.587 -2.541 1.587 -4.5c0 -1.023 -.923 -2 -2 -2c-1.077 0 -2.089 .935 -2 2c.05 1.13 .555 2.565 1.732 5.32m6.263 1.695c4.277 1.271 5.57 -3.443 2.468 -5.315c-.528 -1.573 -.565 -2.667 -.237 -4.5c.284 -1.64 -.997 -2.304 -2.231 -1.605c-1.506 .921 -1.993 1.581 -2 3.42c-.007 1.777 .385 2.685 1 4.5c1.817 4.198 -2.882 5.846 -7 2.514"
+              ></path></svg
+            >
+            GitHub
+          </a>
         </div>
       </div>
       <Image
@@ -105,14 +130,14 @@ const top6Projects = projects.slice(0, 6);
     <main>
       <section class="py-6" id="projects">
         <div class="flex justify-between gap-2 mb-1">
-          <h2 class="text-lg font-bold mb-3">My Projects</h2>
+          <h2 class="text-lg font-bold mb-3">Featured Projects</h2>
           <a
             href="/projects/"
             class="inline-block py-2 underline dark:prose-invert"
             >All projects &raquo;</a
           >
         </div>
-        <ProjectList projects={top6Projects} />
+        <ProjectList projects={featuredProjects} />
       </section>
       <section class="py-6" id="about-me">
         <article>
@@ -122,20 +147,25 @@ const top6Projects = projects.slice(0, 6);
               <Prose>
                 <div class="text-lg">
                   <p>
-                   With over 7 years of experience as a <span class="font-bold">software developer</span>, I have refined my 
-                    skills in back-end technologies across various industries. I have extensively 
-                    worked with PHP, JavaScript, and MySQL, contributing to both small projects 
-                    and large-scale applications.
+                    With over 7 years of experience as a <span class="font-bold">software developer</span>, I have specialized in 
+                    back-end technologies and architecting scalable systems. I have extensive experience with PHP, 
+                    JavaScript, TypeScript, and MySQL, contributing to both startups and enterprise applications.
                   </p>
                   <p>
-                   My experience includes maintaining and enhancing the virtual campus at Universitat Rovira i Virgili, 
-                  developing new features and plugins for the Moodle platform, and implementing Docker to optimize deployment and orchestration. 
-                  Additionally, I built a product API from scratch using Symfony, applying Domain-Driven Design (DDD) principles and integrating Doctrine ORM for 
-                  database management. Throughout my career, I have focused on code refactoring, applying SOLID principles, and automating processes through CI/CD pipelines.
+                    My professional background includes maintaining and enhancing the virtual campus at Universitat Rovira i Virgili, 
+                    developing new features and plugins for the Moodle platform, implementing Docker for deployment optimization, 
+                    and building a product API from scratch using Symfony with Domain-Driven Design (DDD) principles. I have focused on 
+                    code quality through SOLID principles, extensive testing, and automating processes via CI/CD pipelines.
                   </p>
                   <p>
-                    Currently, I am focused on blockchain technology, developing DApps and web3 solutions. I am exploring 
-                    innovative approaches to decentralization and actively contributing to the growth of this emerging ecosystem.
+                    Currently, I am specializing in <span class="font-bold">Web3 and blockchain development</span>, building decentralized 
+                    applications (dApps) with Solidity and TypeScript. My focus areas include <span class="font-bold">DeFi protocols</span>, 
+                    <span class="font-bold">smart contract development</span>, and the Lens Protocol ecosystem. I am actively contributing 
+                    to the Web3 space and exploring innovative decentralized solutions.
+                  </p>
+                  <p class="mt-4">
+                    <strong>Tech Stack:</strong> Solidity, TypeScript, JavaScript, React, NextJS, Backend (Symfony, Node.js), 
+                    Docker, CI/CD, Smart Contracts, DeFi, Lens Protocol
                   </p>
                 </div>
               </Prose>
