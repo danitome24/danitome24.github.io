@@ -7,7 +7,7 @@ export interface Project {
   postLink?: string;
   demoLinkRel?: string;
   wip?: boolean;
-  category?: "featured" | "learning" | "open-source"; // New property
+  category?: "featured" | "learning" | "open-source";
 }
 
 export const projects: Project[] = [
@@ -39,10 +39,10 @@ export const projects: Project[] = [
     category: "featured",
   },
   {
-    name: "FootPool",
-    description: "First decentralized betting application inspired by the popular Spanish 'Quiniela'. Sports betting on Web3",
-    repoLink: "https://github.com/footpool-xyz/footpool-xyz",
-    demoLink: "https://footpool.xyz",
+    name: "Betpool",
+    description: "Decentralized betting application. First decentralized sports betting protocol enabling peer-to-peer wagering on Web3",
+    repoLink: "https://github.com/betpoolxyz/betpool-xyz",
+    demoLink: "https://betpool.xyz",
     demoLinkRel: "nofollow noopener noreferrer",
     tags: ["Solidity", "Web3", "DeFi", "Betting"],
     category: "featured",
@@ -67,42 +67,10 @@ export const projects: Project[] = [
   // Learning Projects - Blockchain Learning Path
   {
     name: "Blockchain Learning Path",
-    description: "Comprehensive collection of 11 blockchain projects demonstrating progression from basic to advanced concepts. Includes smart contracts, DeFi protocols, and Web3 applications",
+    description: "Comprehensive collection of 11 blockchain projects demonstrating progression from basic to advanced concepts. Includes smart contracts, DeFi protocols, NFTs, and Web3 applications built during my learning journey",
     repoLink: "https://github.com/danitome24/blockchain-learning-path",
     demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["Solidity", "Web3", "Learning", "Smart Contracts"],
-    category: "learning",
-  },
-  {
-    name: "Simple Lottery",
-    description: "A decentralized lottery project built with Solidity for learning purposes, exploring the basics of smart contracts and blockchain technology",
-    repoLink: "https://github.com/danitome24/blockchain-learning-path",
-    demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["Solidity", "Web3", "Learning"],
-    category: "learning",
-  },
-  {
-    name: "Simple Kickstarter",
-    description: "A decentralized Kickstarter-like platform built with Solidity, allowing users to create and fund campaigns securely through smart contracts",
-    repoLink: "https://github.com/danitome24/blockchain-learning-path",
-    demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["Solidity", "React", "Web3", "Learning"],
-    category: "learning",
-  },
-  {
-    name: "Voting App",
-    description: "A decentralized voting application built with Solidity, allowing users to securely vote for candidates through smart contracts",
-    repoLink: "https://github.com/danitome24/blockchain-learning-path",
-    demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["Solidity", "NextJS", "Web3", "Learning"],
-    category: "learning",
-  },
-  {
-    name: "UOC Master Studies",
-    description: "Master's degree program projects in Web Development. Demonstrates progression in frontend development, design patterns, and software architecture",
-    repoLink: "https://github.com/danitome24/uoc-master-studies",
-    demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["TypeScript", "HTML/CSS", "React", "Web Development"],
+    tags: ["Solidity", "Web3", "Learning", "Smart Contracts", "DeFi"],
     category: "learning",
   },
 
@@ -111,14 +79,6 @@ export const projects: Project[] = [
     name: "Pass the Block",
     description: "Open source contribution to community-driven blockchain project",
     repoLink: "https://github.com/danitome24/pass-the-block",
-    demoLinkRel: "nofollow noopener noreferrer",
-    tags: ["Solidity", "Web3", "Open Source"],
-    category: "open-source",
-  },
-  {
-    name: "OpenFort Position",
-    description: "Position management system for OpenFort protocol. Contribution to Web3 infrastructure",
-    repoLink: "https://github.com/danitome24/openfort-position",
     demoLinkRel: "nofollow noopener noreferrer",
     tags: ["Solidity", "Web3", "Open Source"],
     category: "open-source",
