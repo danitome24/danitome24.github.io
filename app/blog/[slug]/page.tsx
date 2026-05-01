@@ -2,6 +2,11 @@ import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
 import { formatDate, getBlogPosts } from "@/app/blog/utils";
 import { baseUrl } from "@/app/sitemap";
+import type { Metadata } from "next";
+
+type Props = {
+  params: Promise<{ slug: string }>;
+};
 
 export async function generateStaticParams() {
   const posts = getBlogPosts();
@@ -9,10 +14,16 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { slug } = await params;
+
+  const post = getBlogPosts().find((post) => post.slug === slug);
+
   if (!post) {
-    return;
+    return Promise.resolve({
+      title: "Post not found",
+      description: "The requested post was not found.",
+    });
   }
 
   const {
@@ -49,8 +60,9 @@ export function generateMetadata({ params }: { params: { slug: string } }) {
   };
 }
 
-export default function Blog({ params }: { params: { slug: string } }) {
-  const post = getBlogPosts().find((post) => post.slug === params.slug);
+export default async function Blog({ params }: Props) {
+  const { slug } = await params;
+  const post = getBlogPosts().find((post) => post.slug === slug);
 
   if (!post) {
     notFound();
