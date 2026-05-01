@@ -3,8 +3,8 @@ import Link from "next/link";
 
 export default function Page() {
   return (
-    <section className="space-y-10">
-      <div>
+    <section className="space-y-11">
+      <div className="space-y-2">
         <h1 className="text-xl md:text-4xl font-bold tracking-tight">
           Hey, I&apos;m Dani.
         </h1>
@@ -20,58 +20,19 @@ export default function Page() {
         </p>
       </div>
 
-      <div className="space-y-2 text-lg leading-relaxed">
+      <div className="space-y-4">
         <p className="text-neutral-300">
-          I build consumer software at the intersection of social and crypto.
+          Experience with large-scale education platforms and API infrastructure. Passionate about leveraging AI to increase productivity.
         </p>
 
         <p className="text-neutral-300">
-          Creator of{" "}
-          <Link
-            href="#"
-            className="underline hover:text-neutral-100 transition"
-          >
-            Hey.xyz
-          </Link>
-          . Previously shipped at{" "}
-          <Link
-            href="#"
-            className="underline hover:text-neutral-100 transition"
-          >
-            Lens
-          </Link>{" "}
-          (at{" "}
-          <Link
-            href="#"
-            className="underline hover:text-neutral-100 transition"
-          >
-            Avara
-          </Link>
-          ),{" "}
-          <Link
-            href="#"
-            className="underline hover:text-neutral-100 transition"
-          >
-            CRED
-          </Link>
-          , and{" "}
-          <Link
-            href="#"
-            className="underline hover:text-neutral-100 transition"
-          >
-            Deloitte
-          </Link>
-          .
+          Naturally curious and self-driven to learn and explore new technologies.
         </p>
 
         <p className="text-neutral-300">
-          Lately, I&apos;ve been focused on products that feel personal,
-          contextual, and a little bit magical.
+          Exploring Web3 and Agentic Development in my spare time.
         </p>
 
-        <p className="text-neutral-300">
-          Say hi at <span className="font-semibold">yoginth@hey.com</span>.
-        </p>
       </div>
 
       <div className="space-y-2">
