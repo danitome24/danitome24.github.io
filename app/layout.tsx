@@ -16,7 +16,8 @@ export const metadata: Metadata = {
     default: "Daniel Tomé",
     template: "%s | Daniel Tomé",
   },
-  description: "Software engineer.",
+  description:
+    "Software engineer from Spain. Building backend systems, exploring Web3, and developing agentic AI solutions.",
   icons: {
     icon: [
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -27,11 +28,26 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   openGraph: {
     title: "Daniel Tomé",
-    description: "Software engineer.",
+    description:
+      "Software engineer from Spain. Building backend systems, exploring Web3, and developing agentic AI solutions.",
     url: baseUrl,
     siteName: "Daniel Tomé",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: `${baseUrl}/og?title=Daniel%20Tom%C3%A9&summary=Software%20engineer%20building%20backend%20systems%2C%20Web3%2C%20and%20agentic%20AI`,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Daniel Tomé",
+    description:
+      "Software engineer from Spain. Building backend systems, exploring Web3, and developing agentic AI solutions.",
+    images: [
+      `${baseUrl}/og?title=Daniel%20Tom%C3%A9&summary=Software%20engineer%20building%20backend%20systems%2C%20Web3%2C%20and%20agentic%20AI`,
+    ],
   },
   robots: {
     index: true,

@@ -1,8 +1,9 @@
+import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
-import React from "react";
+import { PreClient } from "@/components/mdx-pre";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
@@ -49,10 +50,11 @@ function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
 
 function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
   const { alt, src, width, height, ...rest } = props;
+  const srcString = typeof src === "string" ? src : "";
   return (
     <Image
       alt={alt || ""}
-      src={src || ""}
+      src={srcString}
       width={width ? Number(width) : undefined}
       height={height ? Number(height) : undefined}
       className="rounded-lg"
@@ -67,11 +69,11 @@ function Code(
     HTMLElement
   >,
 ) {
-  const children = props.children;
+  const { children, ...rest } = props;
   const codeString =
     typeof children === "string" ? children : String(children || "");
   const codeHTML = highlight(codeString);
-  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
+  return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...rest} />;
 }
 
 function slugify(str: string) {
@@ -125,6 +127,7 @@ const components = {
   Image: RoundedImage,
   a: CustomLink,
   code: Code,
+  pre: PreClient,
   Table,
 };
 

@@ -83,11 +83,11 @@ export default async function Blog({ params }: Props) {
             description: post.metadata.summary,
             image: post.metadata.image
               ? `${baseUrl}${post.metadata.image}`
-              : `/og?title=${encodeURIComponent(post.metadata.title)}&summary=${encodeURIComponent(post.metadata.summary)}`,
+              : `${baseUrl}/og?title=${encodeURIComponent(post.metadata.title)}&summary=${encodeURIComponent(post.metadata.summary)}`,
             url: `${baseUrl}/blog/${post.slug}`,
             author: {
               "@type": "Person",
-              name: "My Portfolio",
+              name: "Daniel Tomé",
             },
           }),
         }}
