@@ -4,7 +4,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import React from "react";
 
-function Table({ data }) {
+function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
     <th key={index}>{header}</th>
   ));
@@ -26,8 +26,11 @@ function Table({ data }) {
   );
 }
 
-function CustomLink(props) {
+function CustomLink(props: React.AnchorHTMLAttributes<HTMLAnchorElement>) {
   const href = props.href;
+  if (!href) {
+    return <a {...props} />;
+  }
 
   if (href.startsWith("/")) {
     return (
@@ -44,16 +47,34 @@ function CustomLink(props) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />;
 }
 
-function RoundedImage(props) {
-  return <Image alt={props.alt} className="rounded-lg" {...props} />;
+function RoundedImage(props: React.ImgHTMLAttributes<HTMLImageElement>) {
+  const { alt, src, width, height, ...rest } = props;
+  return (
+    <Image
+      alt={alt || ""}
+      src={src || ""}
+      width={width ? Number(width) : undefined}
+      height={height ? Number(height) : undefined}
+      className="rounded-lg"
+      {...rest}
+    />
+  );
 }
 
-function Code({ children, ...props }) {
-  const codeHTML = highlight(children);
+function Code(
+  props: React.DetailedHTMLProps<
+    React.HTMLAttributes<HTMLElement>,
+    HTMLElement
+  >,
+) {
+  const children = props.children;
+  const codeString =
+    typeof children === "string" ? children : String(children || "");
+  const codeHTML = highlight(codeString);
   return <code dangerouslySetInnerHTML={{ __html: codeHTML }} {...props} />;
 }
 
-function slugify(str) {
+function slugify(str: string) {
   return str
     .toString()
     .toLowerCase()
@@ -64,12 +85,20 @@ function slugify(str) {
     .replace(/\-\-+/g, "-"); // Replace multiple - with single -
 }
 
-function createHeading(level) {
-  const Heading = ({ children }) => {
-    const slug = slugify(children);
+function createHeading(level: number) {
+  const Heading = (
+    props: React.DetailedHTMLProps<
+      React.HTMLAttributes<HTMLHeadingElement>,
+      HTMLHeadingElement
+    >,
+  ) => {
+    const children = props.children;
+    const childrenString =
+      typeof children === "string" ? children : String(children || "");
+    const slug = slugify(childrenString);
     return React.createElement(
       `h${level}`,
-      { id: slug },
+      { ...props, id: slug },
       [
         React.createElement("a", {
           href: `#${slug}`,
@@ -99,7 +128,7 @@ const components = {
   Table,
 };
 
-export function CustomMDX(props) {
+export function CustomMDX(props: React.ComponentProps<typeof MDXRemote>) {
   return (
     <MDXRemote
       {...props}
