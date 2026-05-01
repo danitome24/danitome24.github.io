@@ -22,17 +22,19 @@ export default function Page() {
 
       <div className="space-y-4">
         <p className="text-neutral-300">
-          Experience with large-scale education platforms and API infrastructure. Passionate about leveraging AI to increase productivity.
+          Experience with large-scale education platforms and API
+          infrastructure. Passionate about leveraging AI to increase
+          productivity.
         </p>
 
         <p className="text-neutral-300">
-          Naturally curious and self-driven to learn and explore new technologies.
+          Naturally curious and self-driven to learn and explore new
+          technologies.
         </p>
 
         <p className="text-neutral-300">
           Exploring Web3 and Agentic Development in my spare time.
         </p>
-
       </div>
 
       <div className="space-y-2">

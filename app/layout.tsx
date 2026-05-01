@@ -16,8 +16,7 @@ export const metadata: Metadata = {
     default: "Daniel Tomé",
     template: "%s | Daniel Tomé",
   },
-  description:
-    "Software engineer building education platforms and backend systems.",
+  description: "Software engineer.",
   icons: {
     icon: [
       { url: "/favicon-32x32.png", sizes: "32x32", type: "image/png" },
@@ -28,8 +27,7 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   openGraph: {
     title: "Daniel Tomé",
-    description:
-      "Software engineer building education platforms and backend systems.",
+    description: "Software engineer.",
     url: baseUrl,
     siteName: "Daniel Tomé",
     locale: "en_US",
