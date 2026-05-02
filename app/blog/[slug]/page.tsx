@@ -96,9 +96,14 @@ export default async function Blog({ params }: Props) {
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <p className="text-sm text-neutral-600 dark:text-neutral-400">
-          {formatDate(post.metadata.publishedAt)}
-        </p>
+        <div className="flex gap-4">
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            {formatDate(post.metadata.publishedAt)}
+          </p>
+          <p className="text-sm text-neutral-600 dark:text-neutral-400">
+            {post.readingTime} min read
+          </p>
+        </div>
       </div>
       <article className="prose">
         <CustomMDX source={post.content} />

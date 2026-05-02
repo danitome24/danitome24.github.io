@@ -35,16 +35,24 @@ function readMDXFile(filePath: string) {
   return parseFrontmatter(rawContent);
 }
 
+function calculateReadingTime(content: string): number {
+  const wordsPerMinute = 200;
+  const wordCount = content.trim().split(/\s+/).length;
+  return Math.ceil(wordCount / wordsPerMinute);
+}
+
 function getMDXData(dir: string) {
   const mdxFiles = getMDXFiles(dir);
   return mdxFiles.map((file) => {
     const { metadata, content } = readMDXFile(path.join(dir, file));
     const slug = path.basename(file, path.extname(file));
+    const readingTime = calculateReadingTime(content);
 
     return {
       metadata,
       slug,
       content,
+      readingTime,
     };
   });
 }

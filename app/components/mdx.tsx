@@ -5,6 +5,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import { PreClient } from "@/components/mdx-pre";
 import TokenVisualizer from "@/components/token-visualizer";
+import TrainingCycleDiagram from "@/components/training-cycle-diagram";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
@@ -131,6 +132,7 @@ const components = {
   pre: PreClient,
   Table,
   TokenVisualizer,
+  TrainingCycleDiagram,
 };
 
 export function CustomMDX(props: React.ComponentProps<typeof MDXRemote>) {
