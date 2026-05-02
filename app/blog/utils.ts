@@ -53,6 +53,14 @@ export function getBlogPosts() {
   return getMDXData(path.join(process.cwd(), "app", "blog", "posts"));
 }
 
+export function getDraftPosts() {
+  const draftsDir = path.join(process.cwd(), "app", "blog", "drafts");
+  if (!fs.existsSync(draftsDir)) {
+    return [];
+  }
+  return getMDXData(draftsDir);
+}
+
 export function formatDate(date: string, includeRelative = false) {
   const currentDate = new Date();
   if (!date.includes("T")) {
