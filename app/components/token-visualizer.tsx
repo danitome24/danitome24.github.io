@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState } from "react";
 
 const COLORS = [
   {
@@ -30,19 +30,7 @@ const COLORS = [
   },
 ];
 
-const EXAMPLES = [
-  {
-    label: "Frase en castellano",
-    text: "Los modelos de lenguaje son fascinantes",
-  },
-  { label: "Nombres propios", text: "ChatGPT, Claude y Gemini son LLMs" },
-  { label: "Palabras técnicas", text: "tokenización, preentrenamiento, RLHF" },
-  { label: "En inglés", text: "Hello world! How are you doing?" },
-  {
-    label: "Código Python",
-    text: "def fibonacci(n): return n if n<=1 else fibonacci(n-1)+fibonacci(n-2)",
-  },
-];
+const DEFAULT_TEXT = "Los modelos de lenguaje son fascinantes";
 
 function naiveTokenize(text: string): string[] {
   const tokens: string[] = [];
@@ -93,18 +81,13 @@ function splitWord(word: string, tokens: string[]) {
 }
 
 export default function TokenVisualizer() {
-  const [input, setInput] = useState("Los modelos de lenguaje son fascinantes");
+  const [input, setInput] = useState(DEFAULT_TEXT);
   const [tokens, setTokens] = useState<string[]>(() =>
-    naiveTokenize("Los modelos de lenguaje son fascinantes"),
+    naiveTokenize(DEFAULT_TEXT),
   );
 
-  const tokenize = useCallback((text: string) => {
-    setTokens(naiveTokenize(text));
-  }, []);
-
-  const handleExample = (text: string) => {
-    setInput(text);
-    tokenize(text);
+  const handleTokenize = () => {
+    setTokens(naiveTokenize(input));
   };
 
   return (
@@ -119,12 +102,12 @@ export default function TokenVisualizer() {
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyDown={(e) => e.key === "Enter" && tokenize(input)}
+          onKeyDown={(e) => e.key === "Enter" && handleTokenize()}
           className="flex-1 rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-3 py-2 text-sm text-zinc-900 dark:text-zinc-100 focus:outline-none focus:ring-2 focus:ring-zinc-400"
           placeholder="Escribe algo..."
         />
         <button
-          onClick={() => tokenize(input)}
+          onClick={handleTokenize}
           className="rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-800 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-zinc-700 transition-colors"
         >
           Tokenizar ↗
@@ -156,27 +139,14 @@ export default function TokenVisualizer() {
         {" · "}cada token cuenta para el límite de contexto y el coste de API
       </p>
 
-      {/* Examples */}
-      <div className="flex flex-wrap gap-2 mb-4">
-        {EXAMPLES.map((ex) => (
-          <button
-            key={ex.label}
-            onClick={() => handleExample(ex.text)}
-            className="text-xs px-3 py-1.5 rounded-md border border-zinc-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-zinc-100 hover:border-zinc-400 dark:hover:border-zinc-500 transition-colors"
-          >
-            {ex.label}
-          </button>
-        ))}
-      </div>
-
       {/* Disclaimer */}
       <p className="text-xs text-zinc-500 dark:text-zinc-400 border-t border-zinc-200 dark:border-zinc-700 pt-3">
         <span className="text-zinc-600 dark:text-zinc-300 font-semibold">
           Disclaimer:
         </span>{" "}
-        This tokenizer is a simplified simulation and does not split text like
-        real LLMs do. Check https://gpt-tokenizer.dev/ for a more accurate
-        tokenization.
+        Este tokenizer es una simulación simplificada y no divide el texto como
+        los LLMs reales lo hacen. Consulta https://gpt-tokenizer.dev/ para una
+        tokenización más precisa.
       </p>
     </div>
   );
