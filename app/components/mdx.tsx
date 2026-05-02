@@ -4,6 +4,7 @@ import Image from "next/image";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import { highlight } from "sugar-high";
 import { PreClient } from "@/components/mdx-pre";
+import TokenVisualizer from "@/components/token-visualizer";
 
 function Table({ data }: { data: { headers: string[]; rows: string[][] } }) {
   const headers = data.headers.map((header, index) => (
@@ -129,6 +130,7 @@ const components = {
   code: Code,
   pre: PreClient,
   Table,
+  TokenVisualizer,
 };
 
 export function CustomMDX(props: React.ComponentProps<typeof MDXRemote>) {
