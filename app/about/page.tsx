@@ -24,8 +24,8 @@ export default function About() {
 
         <p>
           Outside of my main work, I explore Web3 and blockchain. I&apos;m also
-          learning about agentic AI—how autonomous systems can improve workflows
-          and decision-making.
+          learning about agentic AI, how autonomous systems can improve
+          workflows and decision-making.
         </p>
         <p className="text-neutral-300">
           Reach out:{" "}
