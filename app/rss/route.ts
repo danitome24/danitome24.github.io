@@ -1,6 +1,8 @@
 import { baseUrl } from "@/app/sitemap";
 import { getBlogPosts } from "@/app/blog/utils";
 
+export const revalidate = 3600;
+
 export async function GET() {
   const allBlogs = await getBlogPosts();
 

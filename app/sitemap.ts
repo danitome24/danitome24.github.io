@@ -1,6 +1,7 @@
 import { getBlogPosts } from "@/app/blog/utils";
 
 export const baseUrl = "https://danitome24.github.io";
+export const revalidate = 3600;
 
 export default async function sitemap() {
   const blogs = getBlogPosts().map((post) => ({
