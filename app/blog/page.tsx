@@ -1,5 +1,6 @@
-import { BlogPosts, DraftPosts } from "@/app/components/posts";
+import { BlogPosts } from "@/app/components/posts";
 import { isDevelopment } from "@/app/lib/environment";
+import { DraftPosts } from "@/components/drafts";
 
 export const metadata = {
   title: "Daniel Tome's Blog",

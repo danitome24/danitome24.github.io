@@ -1,12 +1,20 @@
 import Link from "next/link";
-import { formatDate, getBlogPosts } from "@/app/blog/utils";
+import { formatDate, getDraftPosts } from "@/app/blog/utils";
 
-export function BlogPosts() {
-  const allBlogs = getBlogPosts();
+export function DraftPosts() {
+  const drafts = getDraftPosts();
+
+  if (drafts.length === 0) {
+    return (
+      <p className="text-neutral-500 dark:text-neutral-500 text-sm italic">
+        No drafts yet.
+      </p>
+    );
+  }
 
   return (
     <div>
-      {allBlogs
+      {drafts
         .sort((a, b) => {
           if (
             new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
@@ -18,8 +26,8 @@ export function BlogPosts() {
         .map((post) => (
           <Link
             key={post.slug}
-            className="flex flex-col space-y-1 mb-4 transition-transform duration-200 hover:translate-x-1"
-            href={`/blog/${post.slug}`}
+            className="flex flex-col space-y-1 mb-4 transition-transform duration-200 hover:translate-x-1 opacity-60"
+            href={`/drafts/${post.slug}`}
           >
             <div className="w-full flex flex-col md:flex-row space-x-0 md:space-x-2">
               <p className="text-neutral-600 dark:text-neutral-400 w-[100px] tabular-nums">
@@ -27,6 +35,9 @@ export function BlogPosts() {
               </p>
               <p className="text-neutral-900 dark:text-neutral-100 tracking-tight">
                 {post.metadata.title}
+                <span className="ml-2 text-xs text-amber-500 dark:text-amber-400 font-mono uppercase tracking-wider">
+                  draft
+                </span>
               </p>
             </div>
           </Link>

@@ -62,7 +62,7 @@ export function getBlogPosts() {
 }
 
 export function getDraftPosts() {
-  const draftsDir = path.join(process.cwd(), "app", "blog", "drafts");
+  const draftsDir = path.join(process.cwd(), "app", "drafts", "posts");
   if (!fs.existsSync(draftsDir)) {
     return [];
   }
