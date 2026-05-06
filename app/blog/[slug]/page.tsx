@@ -4,13 +4,14 @@ import { baseUrl } from "@/app/sitemap";
 import type { Metadata } from "next";
 import { getBlogPosts } from "@/lib/posts";
 import { formatDate } from "@/lib/date";
+import { Post } from "@/lib/types";
 
 type Props = {
   params: Promise<{ slug: string }>;
 };
 
 export async function generateStaticParams() {
-  const posts = getBlogPosts();
+  const posts: Post[] = getBlogPosts();
 
   return posts.map((post) => ({ slug: post.slug }));
 }

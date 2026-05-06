@@ -1,19 +1,19 @@
 import fs from "fs";
 import path from "path";
+import { Metadata, Post } from "@/lib/types";
 
-type Metadata = {
-  title: string;
-  publishedAt: string;
-  summary: string;
-  image?: string;
-};
-
+/**
+ * Calculates estimated reading time at 200 words per minute speed.
+ */
 function calculateReadingTime(content: string): number {
   const wordsPerMinute = 200;
   const wordCount = content.trim().split(/\s+/).length;
   return Math.ceil(wordCount / wordsPerMinute);
 }
 
+/**
+ * Parses the frontmatter from an MDX file and returns the metadata and content separately.
+ */
 function parseFrontmatter(fileContent: string) {
   const frontmatterRegex = /---\s*([\s\S]*?)\s*---/;
   const match = frontmatterRegex.exec(fileContent);
@@ -32,19 +32,30 @@ function parseFrontmatter(fileContent: string) {
   return { metadata: metadata as Metadata, content };
 }
 
-function getMDXFiles(dir: string) {
+/**
+ * Reads the specified directory and returns an array of MDX file names (with .mdx extension).
+ * @param dir
+ * @returns
+ */
+function readFiles(dir: string) {
   return fs.readdirSync(dir).filter((file) => path.extname(file) === ".mdx");
 }
 
-function readMDXFile(filePath: string) {
+/**
+ * Read an MDX file and extract its frontmatter metadata and content.
+ */
+function parseMDXFile(filePath: string) {
   const rawContent = fs.readFileSync(filePath, "utf-8");
   return parseFrontmatter(rawContent);
 }
 
-export function getMDXData(dir: string) {
-  const mdxFiles = getMDXFiles(dir);
+/**
+ * Reads all MDX files, extracts their metadata and content, and returns an array of Post objects.
+ */
+export function getMDXData(dir: string): Post[] {
+  const mdxFiles = readFiles(dir);
   return mdxFiles.map((file) => {
-    const { metadata, content } = readMDXFile(path.join(dir, file));
+    const { metadata, content } = parseMDXFile(path.join(dir, file));
     const slug = path.basename(file, path.extname(file));
     const readingTime = calculateReadingTime(content);
 
