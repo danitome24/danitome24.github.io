@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { formatDate, getDraftPosts } from "@/app/blog/utils";
+import { getDraftPosts } from "@/lib/posts";
+import { formatDate } from "@/lib/date";
 
 export function DraftPosts() {
   const drafts = getDraftPosts();
@@ -15,14 +16,6 @@ export function DraftPosts() {
   return (
     <div>
       {drafts
-        .sort((a, b) => {
-          if (
-            new Date(a.metadata.publishedAt) > new Date(b.metadata.publishedAt)
-          ) {
-            return -1;
-          }
-          return 1;
-        })
         .map((post) => (
           <Link
             key={post.slug}

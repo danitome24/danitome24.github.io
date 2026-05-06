@@ -1,4 +1,4 @@
-import { getBlogPosts } from "@/app/blog/utils";
+import { getBlogPosts } from "@/lib/posts";
 
 export const baseUrl = "https://danitome24.github.io";
 export const revalidate = 3600;

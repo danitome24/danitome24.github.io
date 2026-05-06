@@ -1,8 +1,9 @@
 import { notFound } from "next/navigation";
 import { CustomMDX } from "@/components/mdx";
-import { formatDate, getDraftPosts } from "@/app/blog/utils";
 import { baseUrl } from "@/app/sitemap";
-import { isDevelopment } from "@/app/lib/environment";
+import { isDevelopment } from "@/lib/environment";
+import { getDraftPosts } from "@/lib/posts";
+import { formatDate } from "@/lib/date";
 
 type Props = {
   params: Promise<{ slug: string }>;
