@@ -1,7 +1,7 @@
 ---
 title: "LLMs: los que realmente te responden"
 publishedAt: "2026-05-02"
-summary: "Abres ChatGPT y escribes. Pero, ¿quién te responde realmente? Hoy abrimos la caja y vemos qué hay dentro: los LLMs, cómo predicen, cómo aprenden y por qué no te recuerdan."
+summary: "Abres ChatGPT y escribes. Pero, ¿quién te responde realmente? Hoy abrimos la caja y vemos qué hay dentro: los LLMs, cómo predicen y cómo aprenden."
 ---
 
 Abres ChatGPT. Escribes algo. Y en segundos recibes una respuesta que parece humana.
@@ -57,18 +57,4 @@ Prueba cómo cualquier frase se convierte en tokens:
 
 Todo en los LLMs se mide en tokens: cuánto puedes preguntarle, cuánto puede responderte, cuánto cuesta cada llamada si usas la API. Entender tokens es entender los límites reales del modelo.
 
-## Son como Dory: no tienen memoria
-
-¿Recuerdas a Dory, el pez de _Buscando a Nemo_? Era incapaz de retener lo que pasó hace cinco minutos.
-
-Los LLMs son Dory.
-
-Cada vez que abres una conversación nueva, el modelo empieza desde cero. No sabe quién eres. No recuerda lo que hablásteis ayer. Cada conversación es la primera vez que existe.
-
-Lo que parece "memoria" dentro de una conversación no lo es. Es **contexto**: el historial completo de tus mensajes y sus respuestas se envía al modelo en cada turno. No recuerda, relee todo desde el principio cada vez que responde.
-
-Y ese contexto tiene un límite. Solo puede procesar una cantidad determinada de texto a la vez.
-
-¿Cuánto? ¿Qué pasa cuando se llena? ¿Cómo cambia eso la forma en que lo usas?
-
-Eso lo vemos en el próximo post.
+En el próximo post hablaremos de **Attention**, la pieza clave que explica cómo el modelo decide en qué partes del texto fijarse cuando genera cada token.
