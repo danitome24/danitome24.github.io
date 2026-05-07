@@ -45,16 +45,4 @@ No hay un momento de entendimiento. Es matemática aplicada al lenguaje a una ve
 
 Y aquí está la trampa: cuando un LLM te responde con total seguridad, no significa que lo sepa. Significa que esa respuesta era la más probable estadísticamente.
 
-## Tokens: con qué material trabaja el modelo
-
-El modelo no procesa letras ni palabras enteras. Procesa **tokens**.
-
-Un token es un fragmento de texto: puede ser una palabra completa, media palabra, una sílaba o un signo de puntuación. Antes de procesar cualquier cosa, el modelo convierte el texto en una secuencia de esos fragmentos. Si nunca ha visto la palabra "tokenización", la divide en partes que sí conoce y trabaja con ellas igualmente.
-
-Prueba cómo cualquier frase se convierte en tokens:
-
-<TokenVisualizer />
-
-Todo en los LLMs se mide en tokens: cuánto puedes preguntarle, cuánto puede responderte, cuánto cuesta cada llamada si usas la API. Entender tokens es entender los límites reales del modelo.
-
-En el próximo post hablaremos de **Attention**, la pieza clave que explica cómo el modelo decide en qué partes del texto fijarse cuando genera cada token.
+Ok, entonces un LLM predice palabras e irá palabra a palabra. Entonces, en la frase “El banco junto al río estaba lleno de…”, ¿cómo sabe el LLM qué viene después de “de”? Necesita tener algún tipo de relación con las palabras generadas anteriormente. Lo veremos en el siguiente post.
