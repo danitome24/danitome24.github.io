@@ -1,74 +1,49 @@
 ---
 title: "LLMs: los que realmente te responden"
 publishedAt: "2026-05-02"
-summary: "Abres ChatGPT y escribes. Pero, ¿quién te responde realmente? Hoy abrimos la caja y vemos qué hay dentro: los LLMs, cómo predicen, cómo aprenden y por qué no te recuerdan."
+summary: "Abres ChatGPT y escribes. Pero, ¿quién te responde realmente? Hoy abrimos la caja y vemos qué hay dentro: los LLMs, cómo predicen y cómo aprenden."
 ---
 
 Abres ChatGPT. Escribes algo. Y en segundos recibes una respuesta que parece humana.
-
-Pero ChatGPT no es el que te responde. ChatGPT es la interfaz, la caja bonita. El cerebro que genera esa respuesta se llama LLM.
-
-Y no solo ChatGPT. Claude, Gemini y Copilot funcionan igual por debajo. Cada empresa tiene múltiples LLMs, unos más potentes, otros más rápidos, otros especializados en código...
-
-¿Qué hay exactamente dentro? ¿Cómo funciona? Eso es lo que vemos hoy.
-
+ 
+Pero ChatGPT no es el que te responde. ChatGPT es la interfaz, la caja bonita. El "cerebro" que hay detrás de esa respuesta es el **LLM**.
+ 
+Y no solo ChatGPT. Claude, Gemini y Copilot funcionan igual por debajo. Cada empresa tiene su regimiento de LLMs, unos más potentes, otros más baratos, especializados en código...
+ 
+¿Y cómo funciona? Eso es lo que vemos hoy.
+ 
 ## Qué es un LLM y cómo aprende a predecir
-
+ 
 LLM: _Large Language Model_. Modelo de lenguaje grande.
-
-Dentro hay una **red neuronal**: capas de neuronas artificiales conectadas entre sí. Cada conexión tiene un número asociado, su **peso**, que determina cuánta influencia tiene sobre la capa siguiente. Esos pesos son lo que la industria llama **parámetros**. Cuando lees que GPT-4 tiene 1,8 billones de parámetros, significa que hay 1,8 billones de esas conexiones, cada una con su número.
-Ahí es donde vive todo lo que el modelo sabe.
-
+ 
+Dentro hay una **red neuronal**: capas de neuronas artificiales conectadas entre sí. Cada conexión tiene un número asociado, su **peso**, que determina cuánta influencia tiene sobre la capa siguiente. Esos pesos son lo que la industria llama **parámetros**. Cuando lees que GPT-4 tiene 1,8 billones de parámetros, significa que hay 1,8 billones de esas conexiones, cada una con su número. Ahí es donde vive todo lo que el modelo sabe.
+ 
 Al principio del entrenamiento todos esos pesos son aleatorios. El modelo no sabe nada. Y entonces empieza el proceso que lo convierte en lo que conoces.
-
-Se le pasan millones de textos reales: libros, artículos, webs, código, conversaciones. Para cada fragmento, el modelo intenta predecir cuál es el siguiente token. Compara su predicción con lo que realmente venía en el texto. Calcula el error. Mediante un proceso llamado **backpropagation** determina qué pesos contribuyeron al fallo y los ajusta un poco en la dirección correcta.
-
+ 
+Antes de seguir, un concepto clave: el modelo no trabaja con palabras enteras sino con **tokens**. Un token es un fragmento de texto: puede ser una palabra completa, media palabra o un signo de puntuación. Es la unidad mínima con la que opera el modelo. Todo lo que entra y sale pasa por este formato.
+ 
+Se le pasan millones de textos reales: libros, artículos, webs, código... Para cada fragmento, el modelo intenta predecir cuál es el siguiente token. Compara su predicción con lo que realmente venía en el texto. Calcula el error y lo propaga hacia atrás mediante un proceso llamado **backpropagation**, que determina qué pesos contribuyeron al fallo y los ajusta un poco en la dirección correcta.
+ 
 <TrainingCycleDiagram />
 
 Ese ciclo se repite miles de millones de veces. Cada vuelta, los pesos mejoran un poco. Al cabo de semanas de cómputo, los pesos han dejado de ser aleatorios: ahora codifican, repartidos entre todas las conexiones, los patrones del lenguaje humano.
-
+ 
 No hay una neurona que "sabe" que París es la capital de Francia. Ese conocimiento está distribuido entre millones de pesos que, juntos, producen la predicción correcta cuando se les pregunta.
-
+ 
 ### ¿Y quién decide lo que es correcto?
-
-Durante el preentrenamiento, nadie. Lo correcto es simplemente la siguiente palabra del texto real. El modelo ve un fragmento y tiene que predecir lo que viene después. La respuesta ya está en los propios datos. No hace falta que ningún humano etiquete nada.
-
+ 
+Durante el preentrenamiento, nadie. Lo correcto es simplemente el siguiente token del texto real. El modelo ve un fragmento y tiene que predecir lo que viene después. La respuesta ya está en los propios datos. No hace falta que ningún humano etiquete nada.
+ 
 Pero una vez que el modelo sabe predecir texto, todavía no sabe ser útil ni seguro. Ahí entra el **fine-tuning**: el modelo se refina con ejemplos de conversaciones bien hechas y con valoraciones de evaluadores humanos que señalan qué respuestas son mejores. Este proceso se llama RLHF (_Reinforcement Learning from Human Feedback_).
-
+ 
 El conocimiento viene del preentrenamiento. El comportamiento conversacional viene del fine-tuning.
-
+ 
 ### ¿Cómo predice cuando le hablas?
-
-El texto que escribes entra a la red, se convierte en números, fluye por todas las capas, y al final el modelo obtiene una distribución de probabilidades sobre qué token debería venir después. Algo así: la siguiente palabra tiene un 41% de ser _azul_, un 22% de ser _rojo_, un 12% de ser _verde_. Elige una, la añade, y repite el proceso. Token a token, hasta completar la respuesta.
-
-No hay un momento de entendimiento. Es matemática aplicada al lenguaje a una velocidad brutal.
-
-Y aquí está la trampa: cuando un LLM te responde con total seguridad, no significa que lo sepa. Significa que esa respuesta era la más probable estadísticamente.
-
-## Tokens: con qué material trabaja el modelo
-
-El modelo no procesa letras ni palabras enteras. Procesa **tokens**.
-
-Un token es un fragmento de texto: puede ser una palabra completa, media palabra, una sílaba o un signo de puntuación. Antes de procesar cualquier cosa, el modelo convierte el texto en una secuencia de esos fragmentos. Si nunca ha visto la palabra "tokenización", la divide en partes que sí conoce y trabaja con ellas igualmente.
-
-Prueba cómo cualquier frase se convierte en tokens:
-
-<TokenVisualizer />
-
-Todo en los LLMs se mide en tokens: cuánto puedes preguntarle, cuánto puede responderte, cuánto cuesta cada llamada si usas la API. Entender tokens es entender los límites reales del modelo.
-
-## Son como Dory: no tienen memoria
-
-¿Recuerdas a Dory, el pez de _Buscando a Nemo_? Era incapaz de retener lo que pasó hace cinco minutos.
-
-Los LLMs son Dory.
-
-Cada vez que abres una conversación nueva, el modelo empieza desde cero. No sabe quién eres. No recuerda lo que hablásteis ayer. Cada conversación es la primera vez que existe.
-
-Lo que parece "memoria" dentro de una conversación no lo es. Es **contexto**: el historial completo de tus mensajes y sus respuestas se envía al modelo en cada turno. No recuerda, relee todo desde el principio cada vez que responde.
-
-Y ese contexto tiene un límite. Solo puede procesar una cantidad determinada de texto a la vez.
-
-¿Cuánto? ¿Qué pasa cuando se llena? ¿Cómo cambia eso la forma en que lo usas?
-
-Eso lo vemos en el próximo post.
+ 
+El texto que escribes entra a la red, se convierte en tokens, y cada token en una lista de números que fluye por todas las capas. Al final el modelo obtiene una distribución de probabilidades sobre qué token debería venir después.
+ 
+Imagina que le escribes: _"La capital de Francia es"_. El modelo calcula que el siguiente token tiene un 97% de probabilidad de ser _París_, un 1% de ser _Lyon_, un 0,5% de ser _Berlín_... Elige el más probable, lo añade, y repite el proceso con el texto ya actualizado. Token a token, hasta completar la respuesta.
+ 
+Ojo!: cuando un LLM te responde con total seguridad, no significa que lo sepa. Significa que esa respuesta era la más probable estadísticamente.
+ 
+La duda que surge ahora es: Pero si el modelo va token a token, ¿cómo sabe en la frase "El banco junto al río estaba lleno de…" que "banco" es un asiento y no una entidad financiera? Necesita relacionar tokens que pueden estar muy lejos entre sí en el texto. Eso lo resuelve un mecanismo llamado **atención**, y es lo siguiente que veremos.
