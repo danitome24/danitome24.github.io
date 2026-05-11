@@ -12,8 +12,13 @@ type Props = {
 
 export async function generateStaticParams() {
   const posts: Post[] = getDraftPosts();
+  const params = posts.map((post) => ({ slug: post.slug }));
 
-  return posts.map((post) => ({ slug: post.slug }));
+  if (params.length === 0) {
+    return [{ slug: '__placeholder__' }];
+  }
+
+  return params;
 }
 
 export default async function Drafts({ params }: Props) {
