@@ -1,5 +1,5 @@
 ---
-title: "LLMs: cómo funciona attention en los LLMs con ejemplos"
+title: "Cómo funciona attention en los LLMs con ejemplos"
 publishedAt: "2026-05-11"
 summary: "Aprende cómo los modelos de lenguaje usan attention para entender el contexto de las palabras. Explicación visual con la analogía del tablón de corcho."
 ---
@@ -10,13 +10,13 @@ Imagina que le dices a un modelo de lenguaje: "Fui al banco a sacar dinero". En 
 como humano sabes que "banco" en la primera frase hace referencia a una institución financiera, mientras que en la segunda se refiere a un asiento. Pero, ¿cómo lo sabe una máquina?
 
 ## Attention Is All You Need
-En el 2017 se publicó un articulo llamado ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) que se encargó de resolver este problema.
+En el 2017 se publicó un artículo llamado ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) que se encargó de resolver este problema.
 
 ## El problema de los embeddings estáticos
 En los modelos de lenguaje tradicionales, cada palabra se representaba como un vector fijo, conocido como **embedding**. Siempre el mismo. Da igual si estabas hablando del Banco
 Santander o del banco en el que te tumbaste a dormir la siesta en el parque. El modelo no tenía ni idea del contexto.
 
-Con la introducción de la "Attention", estos vectores fijos empeazaron a ser dinámicos. Ahora, el modelo puede ajustar la representación de cada palabra según el contexto en el que se encuentra.
+Con la introducción de la "Attention", estos vectores fijos empezaron a ser dinámicos. Ahora, el modelo puede ajustar la representación de cada palabra según el contexto en el que se encuentra.
 
 Vamos a hacer una representación visual de esto.
 
