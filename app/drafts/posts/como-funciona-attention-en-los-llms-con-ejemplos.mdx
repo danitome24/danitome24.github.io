@@ -6,8 +6,8 @@ summary: "Aprende cómo los modelos de lenguaje usan attention para entender el 
 
 # Cómo los LLMs Saben Qué "Banco" No Siempre Es Un Banco
 
-Imagina que le dices a un modelo de lenguaje: "Fui al banco a sacar dinero". En otra ocasión, le dices: "Me senté en el banco del parque". Tu
-como humano sabes que "banco" en la primera frase hace referencia a una institución financiera, mientras que en la segunda se refiere a un asiento. Pero, ¿cómo lo sabe una máquina?
+Imagina que le dices a un modelo de lenguaje: "Fui al banco a sacar dinero". Tú
+como humano sabes que "banco" hace referencia a una institución financiera y no a un asiento. Pero, ¿cómo lo sabe una máquina?
 
 ## Attention Is All You Need
 
@@ -72,42 +72,24 @@ Embeddings dinámicos (contextos diferentes):
 
  En "El banco del río": banco ≈ 90% banco + 10% río
 ```
-
-Y para la otra frase:
-
-```
- ┌────────────────────────────────────┐
- │                                    │
- │         río [0, 5]                 │
- │            ●                       │
- │                                    │
- │                                    │
- │                                    │
- │              banco [6.4, 4.8]      │
- │                ◆                   │
- │                 ↙                  │
- │    dinero [8, 0]                   │
- │       ●                            │
- │                                    │
- └────────────────────────────────────┘
-
- En "Dinero en el banco": banco ≈ 80% banco + 20% dinero
-```
+Ahora "banco" se mueve hacia las palabras que le dan contexto. En "Dinero en el banco", se desplazaría hacia "dinero". 
 
 ## ¿Cómo calcula la similitud?
+
 El modelo calcula qué tan relacionada está cada palabra con "banco" usando el producto punto de sus vectores. Si dos palabras están muy relacionadas semánticamente, su similitud es alta.
 Si no tienen nada que ver, la similitud es casi cero.
 
 ## ¿Cómo sabe el modelo cuál usar?
+
 Aquí viene la parte clave: el modelo no crea múltiples versiones de "banco" de antemano y luego elige cuál usar. **El proceso es dinámico para cada frase**.
 
-Cuando procesas "El banco del río", el modelo calcula en tiempo real la similitud entre "banco" y todas las palabras de ESA frase específica. Ve que "río" tiene alta similitud, ajusta el vector hacia "río", y ya está. Ese es el único "banco" que existe para esa frase.
-
-Cuando procesas "Dinero en el banco", el modelo hace el mismo cálculo otra vez desde cero. Ahora ve que "dinero" tiene alta similitud, ajusta el vector hacia "dinero", y ese es el único "banco" que existe para esta frase.
+Cuando procesas "El banco del río", el modelo calcula en tiempo real la similitud entre "banco" y todas las palabras de ESA frase específica. 
+Ve que "río" tiene alta similitud, ajusta el vector hacia "río", y ya está. Ese es el único "banco" que existe para esa frase.
 
 No hay un catálogo de "bancos" predefinidos. Cada vez que la palabra "banco" aparece en una frase, el modelo recalcula su representación mirando las palabras que la rodean en ese momento. Por eso se llama **contextualizado**.
 
 ## Conclusión
+
 La idea central: una palabra no tiene un único significado hasta que le das contexto. Attention automatiza ese proceso. Calcula qué palabras importan, en qué proporción y ajusta
 las representaciones en consecuencia. Gracias a esto, los modelos de lenguaje pueden entender que "banco" junto a "río" no tiene nada que ver con "banco" junto a "dinero".
 
