@@ -10,9 +10,11 @@ Imagina que le dices a un modelo de lenguaje: "Fui al banco a sacar dinero". En 
 como humano sabes que "banco" en la primera frase hace referencia a una institución financiera, mientras que en la segunda se refiere a un asiento. Pero, ¿cómo lo sabe una máquina?
 
 ## Attention Is All You Need
+
 En el 2017 se publicó un artículo llamado ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) que se encargó de resolver este problema.
 
 ## El problema de los embeddings estáticos
+
 En los modelos de lenguaje tradicionales, cada palabra se representaba como un vector fijo, conocido como **embedding**. Siempre el mismo. Da igual si estabas hablando del Banco
 Santander o del banco en el que te tumbaste a dormir la siesta en el parque. El modelo no tenía ni idea del contexto.
 
@@ -37,48 +39,67 @@ Embeddings estáticos:
      │       ●                            │
      │                                    │
      └────────────────────────────────────┘
-     
+
 "banco" siempre está en el mismo sitio
 ```
 
-Esto provocaba que los modelos tuvieran dificultades para entender el significado real de las palabras y que las conversaciones pudieran volverse absurdas. 
+Esto provocaba que los modelos tuvieran dificultades para entender el significado real de las palabras y que las conversaciones pudieran volverse absurdas.
 En cambio, con los embeddings dinámicos, el modelo puede ajustar la posición de "banco" dependiendo del contexto. Para ello, el modelo utiliza la atención para determinar
 qué palabras son relevantes para entender el significado de "banco" en cada caso.
 
 La palabra "banco" sabemos que puede tener diferentes significados: institución financiera, asiento, etc. El modelo de atención "acerca" la representación de "banco" a las palabras
-que le dan contexto. ¿A que palabras se acerca en el tablón? Pues la respuesta es **Similitud**. El modelo calcula que tan relacionada está cada palabra con "banco" y si dos palabras están muy relacionadas
-*semánticamente* entonces desplaza la representación de "banco" hacia esa palabra. Quedaría algo como:
+que le dan contexto. El modelo calcula qué tan relacionada está cada palabra con "banco" usando **similitud semántica**. Si dos palabras están muy relacionadas, entonces desplaza
+la representación de "banco" hacia esa palabra. Quedaría algo como:
 
-Embeddings estáticos
+Embeddings dinámicos (contextos diferentes):
 
 ```
-     ┌────────────────────────────────────┐
-     │                                    │
-     │         río [0, 5]                 │
-     │            ●                       │
-     │             ↖                      │
-     │              banco₁ [5.4, 5.9]     │
-     │                ◆                   │
-     │                                    │
-     │              banco₂ [6.4, 4.8]     │
-     │                ◆                   │
-     │                 ↙                  │
-     │    dinero [8, 0]                   │
-     │       ●                            │
-     │                                    │
-     └────────────────────────────────────┘
+ ┌────────────────────────────────────┐
+ │                                    │
+ │         río [0, 5]                 │
+ │            ●                       │
+ │             ↖                      │
+ │              banco [5.4, 5.9]      │
+ │                ◆                   │
+ │                                    │
+ │                                    │
+ │                                    │
+ │                                    │
+ │    dinero [8, 0]                   │
+ │       ●                            │
+ │                                    │
+ └────────────────────────────────────┘
 
-banco₁ = 90% banco + 10% río
-banco₂ = 80% banco + 20% dinero
+ En "El banco del río": banco ≈ 90% banco + 10% río
 ```
-Ahora "banco" se mueve hacia las palabras que le dan contexto. En "El banco del río", se desplaza hacia "río". En "Dinero en el banco", se desplaza hacia "dinero".
+
+Y para la otra frase:
+
+```
+ ┌────────────────────────────────────┐
+ │                                    │
+ │         río [0, 5]                 │
+ │            ●                       │
+ │                                    │
+ │                                    │
+ │                                    │
+ │              banco [6.4, 4.8]      │
+ │                ◆                   │
+ │                 ↙                  │
+ │    dinero [8, 0]                   │
+ │       ●                            │
+ │                                    │
+ └────────────────────────────────────┘
+
+ En "Dinero en el banco": banco ≈ 80% banco + 20% dinero
+```
 
 ## ¿Cómo calcula la similitud?
-El modelo calcula qué tan relacionada está cada palabra con "banco" usando el producto punto de sus vectores. Si dos palabras están muy relacionadas semánticamente, su similitud es alta. 
+El modelo calcula qué tan relacionada está cada palabra con "banco" usando el producto punto de sus vectores. Si dos palabras están muy relacionadas semánticamente, su similitud es alta.
 Si no tienen nada que ver, la similitud es casi cero.
 
 ## ¿Cómo sabe el modelo cuál usar?
-Aquí viene la parte clave: el modelo no crea banco₁ y banco₂ de antemano y luego elige cuál usar. **El proceso es dinámico para cada frase**.
+Aquí viene la parte clave: el modelo no crea múltiples versiones de "banco" de antemano y luego elige cuál usar. **El proceso es dinámico para cada frase**.
 
 Cuando procesas "El banco del río", el modelo calcula en tiempo real la similitud entre "banco" y todas las palabras de ESA frase específica. Ve que "río" tiene alta similitud, ajusta el vector hacia "río", y ya está. Ese es el único "banco" que existe para esa frase.
 
@@ -87,7 +108,7 @@ Cuando procesas "Dinero en el banco", el modelo hace el mismo cálculo otra vez 
 No hay un catálogo de "bancos" predefinidos. Cada vez que la palabra "banco" aparece en una frase, el modelo recalcula su representación mirando las palabras que la rodean en ese momento. Por eso se llama **contextualizado**.
 
 ## Conclusión
-La idea central: una palabra no tiene un único significado hasta que le das contexto. Attention automatiza ese proceso. Calcula qué palabras importan, en qué proporción, y ajusta 
-las representaciones en consecuencia.
+La idea central: una palabra no tiene un único significado hasta que le das contexto. Attention automatiza ese proceso. Calcula qué palabras importan, en qué proporción y ajusta
+las representaciones en consecuencia. Gracias a esto, los modelos de lenguaje pueden entender que "banco" junto a "río" no tiene nada que ver con "banco" junto a "dinero".
 
-Y hablando de **contexto**... Ahora si que entramos en materia buena.
+Y hablando de **contexto**... en el próximo post exploraremos los contextos y cómo un LLM pasa de ser como Dori (olvidándose de todo) a mantener conversaciones coherentes.
