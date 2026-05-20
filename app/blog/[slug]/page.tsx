@@ -98,13 +98,16 @@ export default async function Blog({ params }: Props) {
         {post.metadata.title}
       </h1>
       <div className="flex justify-between items-center mt-2 mb-8 text-sm">
-        <div className="flex gap-4">
+        <div className="flex gap-4 items-center">
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {formatDate(post.metadata.publishedAt)}
           </p>
           <p className="text-sm text-neutral-600 dark:text-neutral-400">
             {post.readingTime} min read
           </p>
+          <span className="text-xs px-2 py-0.5 rounded-full border border-neutral-300 text-neutral-500 dark:border-neutral-700 dark:text-neutral-400">
+            {post.metadata.category}
+          </span>
         </div>
       </div>
       <article className="prose">

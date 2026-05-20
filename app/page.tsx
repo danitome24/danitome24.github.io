@@ -1,7 +1,9 @@
 import { BlogPosts } from "@/app/components/posts";
+import { getBlogPosts } from "@/lib/posts";
 import Link from "next/link";
 
 export default function Page() {
+  const posts = getBlogPosts();
   return (
     <section className="space-y-11">
       <div className="space-y-2">
@@ -42,7 +44,7 @@ export default function Page() {
           Writing
         </h2>
         <div className="space-y-4">
-          <BlogPosts />
+          <BlogPosts posts={posts} />
         </div>
       </div>
     </section>

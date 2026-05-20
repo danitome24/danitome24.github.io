@@ -1,6 +1,7 @@
 import { BlogPosts } from "@/app/components/posts";
 import { isDevelopment } from "@/app/lib/environment";
 import { DraftPosts } from "@/components/drafts";
+import { getBlogPosts } from "@/lib/posts";
 
 export const metadata = {
   title: "Daniel Tome's Blog",
@@ -8,10 +9,12 @@ export const metadata = {
 };
 
 export default function Page() {
+  const posts = getBlogPosts();
+
   return (
     <section>
       <h1 className="font-semibold text-2xl mb-8 tracking-tighter">My Blog</h1>
-      <BlogPosts />
+      <BlogPosts posts={posts} />
 
       {isDevelopment() && (
         <div className="mt-12 pt-8 border-t border-dashed border-neutral-300 dark:border-neutral-700">
