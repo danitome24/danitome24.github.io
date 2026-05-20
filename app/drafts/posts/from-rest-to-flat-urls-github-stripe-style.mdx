@@ -4,3 +4,77 @@ publishedAt: "2026-05-19"
 summary: "Why I left behind deeply nested REST URLs and adopted a flatter design inspired by APIs like GitHub and Stripe."
 category: "API"
 ---
+
+Quick and straight to the point.
+
+Recently I've been working on a project to learn and show how to integrate AI agents and document the process on this blog.
+That's why I started writing about AI concepts.
+
+One of the apps that compose the project is a REST API to manage data. Nothing unusual so far.
+
+While I was adding features, I noticed that the API URLs were becoming more and more long and deeply nested.
+For example, to get a specific resource, the URL could look like this:
+
+```
+GET /routines/{routineId}/workouts/{workoutId}/exercises/{workoutExerciseId}/sets/{setId}
+```
+
+Pretty huge URL for accessing a specific set, right?
+
+> This URL nicely summarizes the problem: to get a `set`, the client has to know four levels of hierarchy.
+
+Those are the problems I found with this approach:
+
+- **Knowing the complete hierarchy**: you must know all the resource structure to build the URL.
+- **Maintaining the context**: if you want to access a resource, the web consumer always must keep all the context of the hierarchy.
+- **Validating the hierarchy in the backend**: do I have to ensure that setId → workoutExerciseId → workoutId → routineId is correct? What a pain.
+- **Rigidity to changes**: if in the future I want workouts to not depend on routines, I would have to change all the URLs.
+  After all, a Workout by itself makes sense.
+
+So, I started researching and found that other popular APIs like GitHub or Stripe use a different approach: flatter URLs with minimal nesting.
+
+## _Flat URLs_: the solution I adopted
+
+The URL structure I ended up implementing looks something like this:
+
+> **Rule:** collections with **maximum two levels of nesting**; individual resources always with flat URLs.
+
+- To get collections we can use up to two levels of nesting, for example:
+
+```
+GET /routines/{routineId}/workouts
+```
+
+- To get individual resources, we use flat URLs without nesting, for example:
+
+```
+GET /workouts/{itemId}
+PUT /workouts/{itemId}
+DELETE /workouts/{itemId}
+POST /workouts
+```
+
+What are the advantages of this approach?
+
+- **Shorter and predictable URLs**: easier to remember and document.
+- **No dependency on hierarchy**: no need to know the complete structure to get a resource.
+- **Backend simplifies**: no need to validate that the whole chain of IDs is consistent.
+- **More flexibility to changes**: you can reorganize resources without breaking existing URLs.
+
+So, now the question is: How do I know that a user is not allowed to get a resource not owned by them?
+For example, how do I prevent that a user gets a workout that is not part of their routine?
+
+Simple.
+
+Since I'm using REST API, the authentication token is sent in the request headers, which identifies the user.
+In the backend, I can check if the user is allowed to get into a specific resource before returning the response.
+
+And what about the hierarchy?
+
+**Not needed anymore.** If a user wants to modify a workout, it's actually not important which routine that workout belongs to. 
+
+In short, imho, the _flat URLs_ approach has allowed me to simplify the structure of my API, make it easier to use and maintain, and avoid issues related to the resource hierarchy.
+
+---
+
+_Lately, I prefer simplicity and practicality rather than pure theory. I guess I’m just getting older._
