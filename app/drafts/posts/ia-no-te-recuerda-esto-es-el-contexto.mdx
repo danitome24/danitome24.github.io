@@ -1,0 +1,65 @@
+---
+title: "La IA no te recuerda. Esto es el contexto."
+publishedAt: "2026-05-21"
+summary: "El modelo no recuerda nada por sí solo. Cada conversación empieza desde cero. ¿Cómo funciona el contexto y qué lo llena? Hoy lo abrimos."
+category: "AI"
+---
+
+Imagina que te levantas por la mañana y no recuerdas nada de tu vida. No sabes quién eres, dónde estás, ni qué has hecho antes.
+
+Nada. Eres una hoja en blanco.
+
+Vas a la cocina y en la nevera hay una nota que dice quién eres, qué sabes hacer, y qué se espera de ti.
+
+Esa nota es tu contexto. Y con la IA funciona igual.
+
+---
+
+## El modelo es una hoja en blanco
+
+Cada conversación empieza completamente vacía. El modelo no sabe nada de ti, no recuerda lo que hablasteis antes, y no tiene instrucciones sobre cómo comportarse.
+
+Lo que parece que "ya sabe cosas", cómo llamarse, qué puede hacer, en qué idioma responder, es porque alguien ha rellenado ese hueco antes de que tú llegues.
+
+---
+
+## ¿Qué se le añade al contexto?
+
+Antes de que escribas tu primer mensaje, el modelo ya recibe una carga inicial con todo lo que necesita para arrancar.
+
+A esto se le llama *contexto inicial*:
+- el *system prompt* con las instrucciones base, como el tono, como comportarse, o qué tipo de respuestas dar.
+- las *skills* y *tools disponibles*, herramientas que el modelo puede usar para buscar información, hacer cálculos, o ejecutar acciones.
+- las *definiciones MCP*, herramientas de integración que permiten conectar el modelo con elementos externos.
+- y cualquier *memoria estática* que se haya configurado.
+
+A partir de ahí, todo lo que ocurre en la conversación se va apilando encima: tus mensajes, las respuestas del modelo, documentos que adjuntas, resultados de herramientas.
+Todo se concatena y se manda junto con cada nueva pregunta.
+
+Y si abrimos una nueva conversación? Pues se empieza de nuevo, sin nada de lo que ha ocurrido en la conversación anterior.
+
+---
+
+## El contexto tiene un límite
+
+El contexto no es infinito. Cada modelo tiene una *ventana de contexto*: el máximo de texto que puede procesar de una vez, medido en **tokens**.
+
+Cuando la ventana se acerca al límite, algo tiene que caer. Y aquí está la clave: **el modelo no decide qué olvidar**. Lo decide la arquitectura o la aplicación que lo envuelve.
+
+Las estrategias más habituales son tres:
+
+- **Truncar**: se eliminan los mensajes más antiguos. Simple, pero puedes perder contexto importante.
+- **Resumir**: se comprimen los mensajes anteriores en un resumen. Pierdes detalle, pero conservas el hilo.
+- **Compactar**: una variante más sofisticada del resumen. En Claude Code, el comando `/compact` hace exactamente esto: condensa el historial de la conversación en un resumen estructurado, liberando espacio sin perder el estado del trabajo actual.
+
+La próxima vez que veas que tu IA "se olvida" de algo que dijiste hace rato, probablemente no es un fallo del modelo. Es que ese mensaje ya no cabe en la ventana.
+
+---
+
+## El contexto es lo que marca la diferencia
+
+El contexto es una parte fundamental de cómo funciona la IA. Como mejor contexto le des, mejor podrá responder, pero ojo, mejor no es más contexto, sino el contexto correcto.
+
+Si le das demasiada información irrelevante, o si no le das la información clave, el modelo no podrá ayudarte bien. 
+
+Por eso es tan importante entender qué es el contexto, cómo se construye, y cómo gestionarlo para que tu IA sea realmente útil.
